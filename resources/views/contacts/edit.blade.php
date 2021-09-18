@@ -31,7 +31,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Name:</strong>
-                    <input type="text" name="name" value="{{ $contact->name }}" class="form-control" placeholder="Enter Name" required>
+                    <input type="text" name="name" value="{{ $contact->name }}" class="form-control" placeholder="Enter Name" required min="5">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

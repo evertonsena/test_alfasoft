@@ -31,5 +31,15 @@
                 {{ $contact->email }}
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <form action="{{ route('contacts.destroy',$contact->id) }}" method="POST">
+                    <a class="btn btn-primary" href="{{ route('contacts.edit',$contact->id) }}">Edit</a>
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection

@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    private function validateForm()
+    {
+        return [
+            'name' => 'required|string|min:5',
+            'contact' => 'required|string|min:9|max:9|unique:contacts,contact,NULL,id,deleted_at,NULL',
+            'email' => 'required|email|unique:contacts,email,NULL,id,deleted_at,NULL',
+        ];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -38,11 +46,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'contact' => 'required|string|min:9|max:9',
-            'email' => 'required|email|unique:contacts',
-        ]);
+        $request->validate($this->validateForm());
 
         Contact::create($request->all());
 
@@ -81,11 +85,7 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'contact' => 'required|string|min:9|max:9',
-            'email' => 'required|email|unique:contacts',
-        ]);
+        $request->validate($this->validateForm());
 
         $contact->update($request->all());
 
