@@ -41,7 +41,7 @@ class ContactController extends Controller
         $request->validate([
             'name' => 'required|string',
             'contact' => 'required|string|min:9|max:9',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:contacts',
         ]);
 
         Contact::create($request->all());
@@ -84,7 +84,7 @@ class ContactController extends Controller
         $request->validate([
             'name' => 'required|string',
             'contact' => 'required|string|min:9|max:9',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:contacts',
         ]);
 
         $contact->update($request->all());
